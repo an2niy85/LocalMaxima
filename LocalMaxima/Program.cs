@@ -10,42 +10,33 @@ namespace LocalMaxima
     {
         static void Main(string[] args)
         {
-            const int size = 30, maxValue = 30;
+            const int size = 30;
+            const int maxValue = 30;
             string locMax = "";
             int[] myArray = new int[size];
-            Random rand = new Random();
+            Random random = new Random();
 
             for (int i = 0; i < size; i++)
             {
-                myArray[i] = rand.Next(maxValue);
+                myArray[i] = random.Next(maxValue);
             }
 
-            for (int i = 0; i < size; i++)
+            if (myArray[1] < myArray[0])
             {
-                
-                if (i == 0)
+                locMax += myArray[0] + " ";
+            }
+            
+            if (myArray[myArray.Length-2] < myArray[myArray.Length-1])
+            {
+                locMax += myArray[myArray.Length-1] + " ";
+            }
+
+            for (int i = 1; i < myArray.Length-2; i++)
+            {
+                if (myArray[i] > myArray[i - 1] && myArray[i] > myArray[i + 1])
                 {
-                    if (myArray[i+1]<myArray[i])
-                    {
-                        locMax += myArray[i] + " ";
-                        i++;
-                    }
-                    
-                }
-                else if (i == size-1)
-                {
-                    if (myArray[i-1]<myArray[i])
-                    {
-                        locMax += myArray[i] + " ";
-                    }
-                }
-                else
-                {
-                    if (myArray[i] > myArray[i-1] && myArray[i] > myArray[i+1])
-                    {
-                        locMax += myArray[i] + " ";
-                        i++;
-                    }
+                    locMax += myArray[i] + " ";
+                    i++;
                 }
             }
             
